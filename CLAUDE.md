@@ -69,7 +69,11 @@ Particionamiento:
 
 ## 6. Convenciones de código
 
-- **Python 3.11**.
+- **Versiones de Python y entornos:**
+  - Python local **3.11+** (el equipo usa 3.12).
+  - Lambda con runtime **python3.12**.
+  - Glue **5.0** (Python 3.11, Spark 3.5).
+  - El código que corre en Glue/EMR no debe depender de librerías fuera de las que traen esos entornos, salvo que se declaren explícitamente.
 - Nombres de variables, funciones y columnas **en español y descriptivos** (ej. `fecha_siniestro`, `precipitacion_mm`, `leer_siniestros_rds()`).
 - Código **explícito, paso a paso**: sin one-liners comprimidos ni comprensiones anidadas. Preferir bucles claros y variables intermedias con nombre.
 - **Comentarios en español.**

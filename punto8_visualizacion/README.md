@@ -1,12 +1,16 @@
-# Punto 8 — Visualización y API
+# Punto 8 — Visualización y aplicación
 
 ## Objetivo
 
-Exponer y visualizar los resultados:
+Aplicación de visualización de datos (matplotlib, dash, PowerBI, grafana, etc.) y alguna aplicación expuesta mediante API Gateway con Streamlit de Python.
 
-- **`graficos/`**: gráficos generados a partir de los resultados del análisis.
-- **`api_lambda/`**: API REST con API Gateway → Lambda (`LabRole`) → Athena.
-- **`streamlit/`**: tablero Streamlit desplegado en EC2 que consume la API (no va detrás de API Gateway porque usa websockets).
+_Fuente: [docs/enunciado.md](../docs/enunciado.md)._
+
+## Organización de la carpeta
+
+- `graficos/`: visualización de datos.
+- `api_lambda/`: API expuesta mediante API Gateway.
+- `streamlit/`: aplicación Streamlit de Python.
 
 ## Cómo reproducir
 

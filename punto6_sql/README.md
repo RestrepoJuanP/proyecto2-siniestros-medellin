@@ -2,11 +2,15 @@
 
 ## Objetivo
 
-Responder las preguntas del caso con consultas SQL sobre las tablas catalogadas usando tres motores:
+Consultas y procesamiento analítico descriptivo con SQL usando AWS Athena, EMR/Hive y SparkSQL.
 
-- **`athena/`**: consultas en Athena (resultados en `athena-resultados/`).
-- **`hive/`**: consultas HiveQL en EMR.
-- **`sparksql/`**: consultas SparkSQL en EMR.
+_Fuente: [docs/enunciado.md](../docs/enunciado.md)._
+
+## Organización de la carpeta
+
+- `athena/`: consultas en AWS Athena.
+- `hive/`: consultas en EMR/Hive.
+- `sparksql/`: consultas en SparkSQL.
 
 ## Cómo reproducir
 

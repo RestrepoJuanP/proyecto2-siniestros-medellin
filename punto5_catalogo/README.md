@@ -1,8 +1,10 @@
-# Punto 5 — Catálogo de datos
+# Punto 5 — Catalogación
 
 ## Objetivo
 
-Catalogar las zonas del data lake en el Glue Data Catalog mediante Glue Crawlers, en las bases `siniestros_raw`, `siniestros_trusted` y `siniestros_refined`, y configurar Hive en EMR para usar el Glue Data Catalog como metastore.
+Catalogación de tablas SQL con herramientas como AWS Glue y EMR/Hive.
+
+_Fuente: [docs/enunciado.md](../docs/enunciado.md)._
 
 ## Cómo reproducir
 

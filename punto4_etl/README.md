@@ -1,11 +1,15 @@
-# Punto 4 — ETL
+# Punto 4 — Preparación de datos
 
 ## Objetivo
 
-Procesar los datos de `raw/` hacia `trusted/` (limpieza, tipado, unificación de siniestros 2019–2025, normalización de comunas) y de `trusted/` hacia `refined/` (integración de siniestros con clima, población y festivos; agregados para análisis). Salidas en Parquet particionadas por `anio`/`mes`.
+Procesamiento orientado a la preparación de datos (zona raw a trusted, o en medallion bronze a silver). Herramientas: AWS Glue y Apache Spark.
 
-- **`glue_jobs/`**: jobs de AWS Glue (rol `LabRole`).
-- **`emr/`**: scripts Spark ejecutados como steps en un cluster EMR (terminarlo al finalizar).
+_Fuente: [docs/enunciado.md](../docs/enunciado.md)._
+
+## Organización de la carpeta
+
+- `glue_jobs/`: jobs de AWS Glue.
+- `emr/`: procesamiento con Apache Spark en EMR.
 
 ## Cómo reproducir
 

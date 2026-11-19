@@ -2,7 +2,9 @@
 
 ## Objetivo
 
-Realizar análisis de datos con PySpark (DataFrames) sobre la zona `refined/`: estadísticas descriptivas, relación entre lluvia/temperatura y siniestralidad, tasas por comuna y comparación festivos vs. días hábiles.
+Consultas y procesamiento analítico descriptivo con Spark en Python (pyspark).
+
+_Fuente: [docs/enunciado.md](../docs/enunciado.md)._
 
 ## Cómo reproducir
 

@@ -2,7 +2,9 @@
 
 ## Objetivo
 
-Definir el caso de estudio "Siniestralidad vial en Medellín y su relación con el clima": contexto, preguntas de negocio/analíticas a responder, fuentes de datos que se usarán y justificación de por qué es un problema de Big Data.
+Crear un caso de estudio donde se procesen datos almacenados en fuentes de datos Bases de Datos, Archivos y URL. Conseguir un conjunto de datos (típicamente datasets públicos), almacenar una parte en bases de datos como fuente, y plantear al menos 5 preguntas/hipótesis de negocio que se contestarán con estos datos.
+
+_Fuente: [docs/enunciado.md](../docs/enunciado.md)._
 
 ## Cómo reproducir
 

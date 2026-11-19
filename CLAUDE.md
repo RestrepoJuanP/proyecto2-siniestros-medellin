@@ -2,6 +2,8 @@
 
 Guía de contexto y convenciones para cualquier persona (o asistente de IA) que trabaje en este repositorio.
 
+> **Referencia de requisitos:** [docs/enunciado.md](docs/enunciado.md) contiene el enunciado oficial y es la fuente de verdad de lo que exige cada punto.
+
 ## 1. Caso de estudio
 
 **"Siniestralidad vial en Medellín y su relación con el clima."**

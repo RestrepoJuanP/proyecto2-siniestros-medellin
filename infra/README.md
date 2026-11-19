@@ -16,6 +16,20 @@ bash infra/destruir_datalake.sh     # vacía y borra el bucket tras escribir su 
 
 `crear_datalake.sh` es idempotente: puede ejecutarse varias veces.
 
+### Ciclo de vida de las fuentes (Punto 2)
+
+Las fuentes se crean desde [punto2_fuentes/](../punto2_fuentes/README.md) (por ejemplo `punto2_fuentes/rds/crear_rds.sh`). Estos scripts las administran entre sesiones:
+
+```bash
+bash infra/pausar_fuentes.sh       # detiene la RDS y la EC2 de fuentes (si ID_INSTANCIA_EC2_FUENTES está en .env)
+bash infra/reanudar_fuentes.sh     # las inicia y espera a que estén disponibles
+bash infra/destruir_fuentes.sh     # borra la RDS (sin snapshot), termina la EC2 y borra ambos security groups; pide escribir DESTRUIR
+```
+
+- AWS vuelve a iniciar automáticamente una RDS detenida después de 7 días.
+- Después de `reanudar_fuentes.sh`, si cambió de red, ejecute `bash punto2_fuentes/rds/actualizar_mi_ip.sh`.
+- [funciones_comunes.sh](funciones_comunes.sh) no se ejecuta solo. Agrupa funciones compartidas: leer y escribir `.env` sin duplicar claves, detectar la IP pública, buscar security groups y consultar estados.
+
 ## Evidencias
 
 <!-- Capturas en docs/evidencias/ y enlaces aquí. -->

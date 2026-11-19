@@ -137,7 +137,7 @@ Acordadas a partir de la exploración ([punto1_caso_estudio/exploracion/hallazgo
 
 - **`codigo_comuna` (int)** es la llave de comuna en todo el proyecto. Se extrae de `num_comuna`: "Comuna 16" → 16, "Corregimiento 90" → 90; `ND`, `SN01`, `SN02` o nulo → NULL.
 - La capa de población **no tiene código**, solo `nombre`. El **catálogo de comunas** (en RDS) es el puente: `codigo_comuna`, `nom_comuna`, `nombre_normalizado`.
-- `nombre_normalizado` = minúsculas, sin tildes, sin espacios repetidos y sin el prefijo "corregimiento de". Con esta regla cruzan las 21 comunas y corregimientos.
+- `nombre_normalizado` = MAYÚSCULAS, sin tildes, sin espacios repetidos y sin el prefijo "CORREGIMIENTO DE" (ej. "Corregimiento de San Cristobal" → `SAN CRISTOBAL`, "Belén" → `BELEN`). Con esta regla cruzan las 21 comunas y corregimientos. La misma función se aplica al `nombre` de la capa de población.
 - Los siniestros con `codigo_comuna` NULL (473, 0,2 %) se conservan pero se excluyen de las tasas por comuna.
 - El barrio se identifica por la pareja `(barrio, codigo_comuna)`, porque hay nombres de barrio repetidos en varias comunas.
 

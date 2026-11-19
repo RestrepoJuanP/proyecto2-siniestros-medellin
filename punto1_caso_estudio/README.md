@@ -144,7 +144,7 @@ Puntos: **6** = SQL (Athena, Hive, SparkSQL), **7** = PySpark, **8** = visualiza
 
 - **Siniestros ↔ clima diario:** por `fecha_siniestro` = `time` (día).
 - **Siniestros ↔ clima horario:** por `fecha_hora_siniestro` truncada a la hora = `time`.
-- **Siniestros ↔ población:** se pasa por el catálogo de comunas. En siniestros, `codigo_comuna` lleva al catálogo; en población, `nombre_normalizado` (sin tildes, en minúsculas, sin el prefijo "Corregimiento de") lleva al catálogo. La población se toma del mismo `anio`.
+- **Siniestros ↔ población:** se pasa por el catálogo de comunas. En siniestros, `codigo_comuna` lleva al catálogo; en población, `nombre_normalizado` (en mayúsculas, sin tildes y sin el prefijo "Corregimiento de") lleva al catálogo. La población se toma del mismo `anio`.
 - **Siniestros ↔ festivos:** por `fecha_siniestro` = `fecha`.
 
 ```mermaid

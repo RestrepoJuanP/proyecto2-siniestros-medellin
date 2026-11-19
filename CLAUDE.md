@@ -117,3 +117,43 @@ if __name__ == "__main__":
 | `punto7_pyspark/` | Análisis con PySpark |
 | `punto8_visualizacion/` | `graficos/`, `api_lambda/`, `streamlit/` |
 | `docs/evidencias/` | Capturas y evidencias |
+
+## 9. Decisiones del caso (Módulo 1)
+
+Acordadas a partir de la exploración ([punto1_caso_estudio/exploracion/hallazgos.md](punto1_caso_estudio/exploracion/hallazgos.md)). Detalle completo en [punto1_caso_estudio/README.md](punto1_caso_estudio/README.md). **Todos los módulos siguientes deben respetarlas.**
+
+### Corte de fuentes de siniestros
+
+- La capa ArcGIS `VM_Accidentes/0` contiene 2019–2025 (235.820 registros). Se parte así:
+  - **RDS MariaDB `movilidad`**: siniestros **2019–2022** (`anio <= 2022`, 157.603 filas), cargados desde la capa para simular el sistema transaccional.
+  - **URL (Lambda)**: siniestros **2023–2025** (`where=anio >= 2023`, 78.217 filas), paginando de 2.000 en 2.000 con `resultOffset`.
+- Ambas partes tienen las mismas columnas que la capa original y se unen en `trusted/`.
+
+### Llave de comuna y catálogo
+
+- **`codigo_comuna` (int)** es la llave de comuna en todo el proyecto. Se extrae de `num_comuna`: "Comuna 16" → 16, "Corregimiento 90" → 90; `ND`, `SN01`, `SN02` o nulo → NULL.
+- La capa de población **no tiene código**, solo `nombre`. El **catálogo de comunas** (en RDS) es el puente: `codigo_comuna`, `nom_comuna`, `nombre_normalizado`.
+- `nombre_normalizado` = minúsculas, sin tildes, sin espacios repetidos y sin el prefijo "corregimiento de". Con esta regla cruzan las 21 comunas y corregimientos.
+- Los siniestros con `codigo_comuna` NULL (473, 0,2 %) se conservan pero se excluyen de las tasas por comuna.
+- El barrio se identifica por la pareja `(barrio, codigo_comuna)`, porque hay nombres de barrio repetidos en varias comunas.
+
+### Deduplicación
+
+- En `trusted/` se deduplica por **`radicado`** (identificador de negocio del siniestro), quedándose con un solo registro por radicado. Esto protege contra traslapes entre RDS y URL y contra reingestas.
+
+### Definiciones operativas
+
+| Concepto | Regla |
+|----------|-------|
+| Día seco | `precipitation_sum` < 1 mm |
+| Lluvia ligera (día) | 1–10 mm |
+| Lluvia fuerte (día) | > 10 mm |
+| Hora con lluvia | `precipitation` de la hora ≥ 1 mm |
+| Franjas horarias | madrugada 00–05, mañana 06–11, tarde 12–17, noche 18–23 |
+| Puente | Festivo que cae en lunes + el sábado y el domingo anteriores |
+| Tasas | Por cada 10.000 habitantes, con la población proyectada del mismo año |
+| Comparación entre tipos de día | Promedio de siniestros por día, nunca totales |
+
+### Columnas derivadas en `trusted/`
+
+`fecha_hora_siniestro`, `codigo_comuna`, `franja_horaria`, `dia_semana`, `es_festivo`, `es_puente`, `precipitacion_dia_mm`, `categoria_lluvia_dia`, `precipitacion_hora_mm` y `hora_con_lluvia` (definidas en el diccionario de datos del README del Punto 1).
